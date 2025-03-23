@@ -156,7 +156,6 @@
     <img src="matheduc.jpg" alt="Kids Learning Math" width="80%">
 </section>
 
-
 <!-- Discussion Section -->
 <section id="discussion" class="container discussion">
     <h2>📚 Discussion: Addition & Subtraction</h2>
@@ -179,52 +178,47 @@
     </ul>
 </section>
 
-<body>
-
-    <!-- Your content here -->
-    <section id="learn" class="container">
-        <h2>📚 Learn Addition and Subtraction</h2>
-        <p>Practice addition and subtraction through engaging activities and interactive examples!</p>
+<!-- Learn Section -->
+<section id="learn" class="container">
+    <h2>📚 Learn Addition and Subtraction</h2>
+    <p>Practice addition and subtraction through engaging activities and interactive examples!</p>
+    
+    <div class="calculator">
+        <input type="number" id="num1">
+        <input type="number" id="num2">
         
-        <div class="calculator">
-            <input type="number" id="num1">
-            <input type="number" id="num2">
+        <button onclick="calculate('+')">Add</button>
+        <button onclick="calculate('-')">Subtract</button>
+
+        <p id="calc-result" style="font-size: 22px; font-weight: bold; text-align: center; margin-top: 20px;"></p>
+    </div>
+</section>
+
+<!-- ✅ Place the script here -->
+<script>
+    function calculate(operator) {
+        const num1 = parseFloat(document.getElementById('num1').value);
+        const num2 = parseFloat(document.getElementById('num2').value);
+        const resultElement = document.getElementById('calc-result');
+
+        if (!isNaN(num1) && !isNaN(num2)) {
+            let result;
             
-            <button onclick="calculate('+')">Add</button>
-            <button onclick="calculate('-')">Subtract</button>
-
-            <p id="calc-result" style="font-size: 22px; font-weight: bold; text-align: center; margin-top: 20px;"></p>
-        </div>
-    </section>
-
-    <!-- ✅ Place the script here -->
-    <script>
-        function calculate(operator) {
-            const num1 = parseFloat(document.getElementById('num1').value);
-            const num2 = parseFloat(document.getElementById('num2').value);
-            const resultElement = document.getElementById('calc-result');
-
-            if (!isNaN(num1) && !isNaN(num2)) {
-                let result;
-                
-                if (operator === '+') {
-                    result = num1 + num2;
-                    resultElement.textContent = ✅ ${num1} + ${num2} = ${result};
-                    resultElement.style.color = 'green';
-                } else if (operator === '-') {
-                    result = num1 - num2;
-                    resultElement.textContent =🔵 ${num1} - ${num2} = ${result}`;
-                    resultElement.style.color = 'blue';
-                }
-            } else {
-                resultElement.textContent = "❌ Please enter valid numbers.";
-                resultElement.style.color = 'red';
+            if (operator === '+') {
+                result = num1 + num2;
+                resultElement.textContent = `✅ ${num1} + ${num2} = ${result}`;
+                resultElement.style.color = 'green';
+            } else if (operator === '-') {
+                result = num1 - num2;
+                resultElement.textContent = `🔵 ${num1} - ${num2} = ${result}`;
+                resultElement.style.color = 'blue';
             }
+        } else {
+            resultElement.textContent = "❌ Please enter valid numbers.";
+            resultElement.style.color = 'red';
         }
-    </script>
-
-</body>
-
+    }
+</script>
 
 <section id="videos" class="container video">
     <h2>📺 Watch & Learn</h2>
@@ -284,7 +278,7 @@
         let totalQuestions = Object.keys(answers).length;
 
         for (let key in answers) {
-            const selected = document.querySelector(input[name="${key}"]:checked);
+            const selected = document.querySelector(`input[name="${key}"]:checked`);
             
             if (selected) {
                 if (selected.value === answers[key]) {
@@ -294,7 +288,7 @@
         }
 
         const resultElement = document.getElementById("quiz-result");
-        resultElement.textContent = You scored ${score}/${totalQuestions}!;
+        resultElement.textContent = `You scored ${score}/${totalQuestions}!`;
 
         // Style the result
         resultElement.style.color = score >= 3 ? 'green' : 'red';
